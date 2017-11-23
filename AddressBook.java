@@ -4,11 +4,11 @@
 // transactions to ensure that the operations complete
 // successfully.
 
-
 // Java core packages
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
 
 // Java extension packages
 import javax.swing.*;
@@ -105,8 +105,8 @@ public class AddressBook extends JFrame {
         Dimension dimension = toolkit.getScreenSize();
 
         // center window on screen
-        setBounds( 100, 100, dimension.width - 200,
-                dimension.height - 200 );
+        setBounds( 100, 100, dimension.width - 800,
+                dimension.height - 500 );
 
         setVisible( true );
     }  // end AddressBook constructor
@@ -239,10 +239,10 @@ public class AddressBook extends JFrame {
 
             // insert person in address book
             try {
-
                 // Get personID. If 0, this is a new entry;
                 // otherwise an update must be performed.
                 int personID = person.getPersonID();
+                System.out.println("Person id "+personID);
 
                 // determine string for message dialogs
                 String operation =
@@ -362,26 +362,29 @@ public class AddressBook extends JFrame {
 
                 // Execute search. If found, AddressBookEntry
                 // is returned containing data.
-                AddressBookEntry person = database.findPerson(
+                ArrayList<AddressBookEntry> People = database.findPerson(
                         lastName );
+                int size=People.size();
+                System.out.println("number of same names found "+size);
+                for(int i=0; i< size; i++) {
+                    AddressBookEntry person = People.get(i);
+                    if (person != null) {
 
-                if ( person != null ) {
-                    // create window to display AddressBookEntry
-                    AddressBookEntryFrame entryFrame =
-                            createAddressBookEntryFrame();
+                        // create window to display AddressBookEntry
+                        AddressBookEntryFrame entryFrame =
+                                createAddressBookEntryFrame();
 
-                    // set AddressBookEntry to display
-                    entryFrame.setAddressBookEntry( person );
+                        // set AddressBookEntry to display
+                        entryFrame.setAddressBookEntry(person);
 
-                    // display window
-                    desktop.add( entryFrame );
-                    entryFrame.setVisible( true );
-                }
-                else
-                    JOptionPane.showMessageDialog( desktop,
-                            "Entry with last name \"" + lastName +
-                                    "\" not found in address book" );
+                        // display window
+                        desktop.add(entryFrame);
+                        entryFrame.setVisible(true);
 
+                    } else
+                        JOptionPane.showMessageDialog(desktop,
+                                "Entry with last name \"" + lastName +
+                                        "\" not found in address book");                }
             }  // end "if ( lastName == null )"
 
         }  // end method actionPerformed

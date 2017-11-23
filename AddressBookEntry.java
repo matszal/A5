@@ -10,8 +10,10 @@ public class AddressBookEntry {
     private String city = "";
     private String county = "";
     private String eircode = "";
-    private String phoneNumber = "";
-    private String emailAddress = "";
+    private String phoneNumber1 = "";
+    private String phoneNumber2 = "";
+    private String emailAddress1 = "";
+    private String emailAddress2 = "";
     private int personID;
     private int addressID;
     private int phoneID;
@@ -112,29 +114,53 @@ public class AddressBookEntry {
         return eircode;
     }
 
-    // set person's phone number
-    public void setPhoneNumber( String number )
+    // set person's phone number1
+    public void setPhoneNumber1( String number1 )
     {
-        phoneNumber = number;
+        phoneNumber1 = number1;
+    }
+    //get phone number 1
+    public String getPhoneNumber1()
+    {
+        return phoneNumber1;
     }
 
-    // get person's phone number
-    public String getPhoneNumber()
+    // set person's phone number2
+    public void setPhoneNumber2( String phoneNumber2 )
     {
-        return phoneNumber;
+        this.phoneNumber2 = phoneNumber2;
+    }
+    //get phone number 2
+    public String getPhoneNumber2()
+    {
+        return phoneNumber2;
     }
 
-    // set person's email address
-    public void setEmailAddress( String email )
+
+    // set person's email 1 address
+    public void setEmailAddress1( String firstLine )
     {
-        emailAddress = email;
+        emailAddress1 = emailAddress1;
     }
 
-    // get person's email address
-    public String getEmailAddress()
+    // get person's email 1 address
+    public String getEmailAddress1()
     {
-        return emailAddress;
+        return emailAddress1;
     }
+
+    // set person's email 2 address
+    public void setEmailAddress2( String seconLine )
+    {
+        this.emailAddress2 = emailAddress2;
+    }
+
+    // get person's email 2 address
+    public String getEmailAddress2()
+    {
+        return emailAddress2;
+    }
+
 
     // get person's ID
     public int getPersonID()

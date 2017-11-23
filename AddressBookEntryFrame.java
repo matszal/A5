@@ -32,19 +32,20 @@ public class AddressBookEntryFrame extends JInternalFrame {
     private static final String FIRST_NAME = "First Name",
             LAST_NAME = "Last Name", ADDRESS1 = "Address 1",
             ADDRESS2 = "Address 2", CITY = "City", COUNTY = "County",
-            EIRCODE = "Eircode", PHONE = "Phone", EMAIL = "Email";
+            EIRCODE = "Eircode", PHONE1 = "Phone 1",PHONE2 = "Phone 2",
+            EMAIL1 = "Email 1", EMAIL2 = "Email 2";
 
     // construct GUI
     public AddressBookEntryFrame()
     {
-        super( "Address Book Entry", true, true );
+        super( "Address Entry", true, true );
 
         fields = new HashMap();
 
         leftPanel = new JPanel();
-        leftPanel.setLayout( new GridLayout( 9, 1, 0, 5 ) );
+        leftPanel.setLayout( new GridLayout( 11, 1, 0, 5 ) );
         rightPanel = new JPanel();
-        rightPanel.setLayout( new GridLayout( 9, 1, 0, 5 ) );
+        rightPanel.setLayout( new GridLayout( 11, 1, 0, 5 ) );
 
         createRow( FIRST_NAME );
         createRow( LAST_NAME );
@@ -53,14 +54,16 @@ public class AddressBookEntryFrame extends JInternalFrame {
         createRow( CITY );
         createRow( COUNTY );
         createRow( EIRCODE );
-        createRow( PHONE );
-        createRow( EMAIL );
+        createRow( PHONE1 );
+        createRow( PHONE2 );
+        createRow( EMAIL1 );
+        createRow( EMAIL2 );
 
         Container container = getContentPane();
         container.add( leftPanel, BorderLayout.WEST );
         container.add( rightPanel, BorderLayout.CENTER );
 
-        setBounds( xOffset, yOffset, 300, 300 );
+        setBounds( xOffset, yOffset, 400, 400 );
         xOffset = ( xOffset + 30 ) % 300;
         yOffset = ( yOffset + 30 ) % 300;
     }
@@ -78,8 +81,10 @@ public class AddressBookEntryFrame extends JInternalFrame {
         setField( CITY, person.getCity() );
         setField( COUNTY, person.getCounty() );
         setField( EIRCODE, person.getEircode() );
-        setField( PHONE, person.getPhoneNumber() );
-        setField( EMAIL, person.getEmailAddress() );
+        setField( PHONE1, person.getPhoneNumber1() );
+        setField( PHONE2, person.getPhoneNumber2() );
+        setField( EMAIL1, person.getEmailAddress1() );
+        setField( EMAIL2, person.getEmailAddress2() );
     }
 
     // store AddressBookEntry data from GUI and return
@@ -93,8 +98,10 @@ public class AddressBookEntryFrame extends JInternalFrame {
         person.setCity( getField( CITY ) );
         person.setCounty( getField( COUNTY ) );
         person.setEircode( getField( EIRCODE ) );
-        person.setPhoneNumber( getField( PHONE ) );
-        person.setEmailAddress( getField( EMAIL ) );
+        person.setPhoneNumber1( getField( PHONE1 ) );
+        person.setPhoneNumber2( getField( PHONE2 ) );
+        person.setEmailAddress1( getField( EMAIL1 ) );
+        person.setEmailAddress2( getField( EMAIL2 ) );
 
         return person;
     }
